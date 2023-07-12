@@ -97,7 +97,6 @@ class Body:
     @staticmethod
     def show_data_prediction(selected_real_comp, df_ticker):
         selected_business_date = sidebar_data_list[3][0]
-        st.write(selected_business_date)
         st.subheader(selected_real_comp)
         number_periods_forecast = st.slider("Quantidade de periodos para previsão: ",
                                             5, 60)
@@ -106,6 +105,8 @@ class Body:
         model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
+        teste = df_ticker["Adj Close"].loc[df_ticker["Datetime"]>= selected_business_date]
+        st.write(teste)
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()
         average_difference = difference.iloc[-15:].mean()
         difference = DataFrame(difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast, columns=["difference"])

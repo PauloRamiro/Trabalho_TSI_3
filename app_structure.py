@@ -89,8 +89,8 @@ class Body:
         st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 
         fig2 = go.Figure()
-        fig2.add_trace(go.Scatter(x=df_ticker["ds"],
-                                 y=df_ticker["yhat"],
+        fig2.add_trace(go.Scatter(x=predict["ds"],
+                                 y=predict["yhat"],
                                  name="Valores preditos",
                                  line_color="blue"))
         st.plotly_chart(fig2)

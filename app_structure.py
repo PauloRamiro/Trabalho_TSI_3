@@ -1,5 +1,6 @@
 from prophet.plot import plot_plotly, plot_components_plotly
 from plotly import graph_objs as go
+from pandas import DataFrame
 import streamlit as st
 import data_pre_processing
 import prediction
@@ -94,7 +95,7 @@ class Body:
         
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()
         average_difference = difference.iloc[-15:].mean()
-        difference = difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast
+        difference = DataFrame(difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast, columns="difference")
         st.write(difference)
 
         predict = predict.iloc[-(number_periods_forecast+15):]

@@ -1,6 +1,7 @@
 from prophet.plot import plot_plotly, plot_components_plotly
 from plotly import graph_objs as go
 from pandas import DataFrame
+import pandas as pd
 import streamlit as st
 import data_pre_processing
 import prediction
@@ -106,8 +107,8 @@ class Body:
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
         
-        st.write(df_ticker["Datetime"].iloc[-1])
-        st.write(str(selected_business_date))
+        st.write(pd.to_datetime(df_ticker["Datetime"].iloc[-1]))
+        st.write(selected_business_date)
         teste = df_ticker.loc[df_ticker["Datetime"]>= selected_business_date]
         st.write(teste)
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()

@@ -98,7 +98,7 @@ class Body:
         difference = DataFrame(difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast, columns=["difference"])
         st.write(difference)
 
-        corrected_predict = DataFrame(predict["yhat"].iloc[-(number_periods_forecast+15):].to_list, columns =["yhat"])
+        corrected_predict = DataFrame(predict["yhat"].iloc[-(number_periods_forecast+15):].to_list(), columns =["yhat"])
         corrected_predict = corrected_predict["yhat"].copy() + difference["difference"].copy()
     
         st.write(corrected_predict)

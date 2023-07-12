@@ -107,6 +107,7 @@ class Body:
         
         
         st.write(df_ticker["Datetime"].iloc[-1])
+        st.write(str(selected_business_date))
         teste = df_ticker.loc[df_ticker["Datetime"]>= selected_business_date]
         st.write(teste)
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()

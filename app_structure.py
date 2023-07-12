@@ -92,11 +92,12 @@ class Body:
         model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
-        average_difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()
-        average_difference = average_difference.iloc[-15:].mean()
-        st.write(average_difference)
+        difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()
+        average_difference = difference.iloc[-15:].mean()
+        difference = (difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast)
+        st.write(difference)
 
-        predict = predict.iloc[-(number_periods_forecast+10):]
+        predict = predict.iloc[-(number_periods_forecast+15):]
 
         #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 

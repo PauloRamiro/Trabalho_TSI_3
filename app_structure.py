@@ -88,7 +88,7 @@ class Body:
             model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_comparison()
 
-        #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
+        st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 
         st.subheader("Gráfico com os valores de predição:")
         model_predict_graphic = plot_plotly(model, predict)

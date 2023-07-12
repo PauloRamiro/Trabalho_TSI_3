@@ -1,10 +1,9 @@
-streamlit
 Cython
+streamlit
 numpy
 pandas
 matplotlib
 convertdate
-pystan==2.19.1.1
 yfinance
 plotly
 ephem

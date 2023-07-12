@@ -107,6 +107,7 @@ class Body:
         model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
  
+        st.write(predict["yhat"].loc[ df_ticker["ds"] >= selected_business_date].iloc[:-(number_periods_forecast)].copy())
         difference = (df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy()
                     - predict["yhat"].loc[ df_ticker["ds"] >= selected_business_date].iloc[:-(number_periods_forecast)].copy())
         st.write(difference)

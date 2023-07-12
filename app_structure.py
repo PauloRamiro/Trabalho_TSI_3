@@ -87,10 +87,10 @@ class Body:
         predict = predict.iloc[-(number_periods_forecast+10):]
 
         st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
-        st. write(model)
 
         st.subheader("Gráfico com os valores de predição:")
         model_predict_graphic = plot_plotly(model, predict)
+        st.write( model_predict_graphic)
         st.plotly_chart(model_predict_graphic)
 
         #st.subheader("Gráficos com dados técnicos da predição realizada:")

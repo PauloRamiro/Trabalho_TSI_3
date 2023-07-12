@@ -26,7 +26,7 @@ class Sidebar:
         selected_real_comp = "Predição"
         selected_business  = Sidebar.select_business()
 
-        sidebar_data_list = [ticker_name_select, selected_period, selected_real_comp]
+        sidebar_data_list = [ticker_name_select, selected_period, selected_real_comp, selected_business]
 
     @staticmethod
     def select_ticker():
@@ -96,6 +96,8 @@ class Body:
 
     @staticmethod
     def show_data_prediction(selected_real_comp, df_ticker):
+        selected_business_date = sidebar_data_list[3][0]
+        st.write(selected_business_date)
         st.subheader(selected_real_comp)
         number_periods_forecast = st.slider("Quantidade de periodos para previsão: ",
                                             5, 60)

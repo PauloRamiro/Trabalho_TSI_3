@@ -19,7 +19,7 @@ class Sidebar:
         global sidebar_data_list
         ticker_name_select = Sidebar.select_ticker()
         selected_period = Sidebar.select_period()
-        selected_real_comp = Sidebar.prediction_x_reality()
+        selected_real_comp = "Predição"
 
         sidebar_data_list = [ticker_name_select, selected_period, selected_real_comp]
 
@@ -36,27 +36,13 @@ class Sidebar:
 
     @staticmethod
     def select_period():
-        periods = ["1 minuto", "2 minutos", "5 minutos", "15 minutos", "30 minutos"]
-        periods += ["1 hora", "1 dia", "5 dias", "1 semana"]
+        periods = ["1 hora", "1 dia", "5 dias"]
 
         st.sidebar.header("Área de Periodos")
         st.sidebar.write("Nessa seção você irá selecionar o periodo a ser analisado na predição,"
                          + " veja os periodos abaixo:")
         selected_period = st.sidebar.selectbox("Escolha um periodo:", periods)
         return selected_period
-
-    @staticmethod
-    def prediction_x_reality():
-        option = ["Comparação", "Predição"]
-
-        st.sidebar.header("Comparação ou predição")
-        st.sidebar.write("Aqui você escolhe a opção de Comparação, ou não, a eficácia do modelo. Onde: ")
-        st.sidebar.write("º Se sua escolha for sim, será gerado um modelo que usará 95% da base de dados "
-                         + "para treino e os outros 5% para teste;")
-        st.sidebar.write("º Se for escolhido Predição, será utilizado todos os dados disponíveis para treino "
-                         + "e será exibido os dados de predição.")
-        selected_option = st.sidebar.selectbox("Escolha um periodo:", option)
-        return selected_option
 
 
 class Body:

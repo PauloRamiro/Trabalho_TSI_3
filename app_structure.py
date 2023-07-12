@@ -107,15 +107,13 @@ class Body:
         model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
  
-        st.write(predict["yhat"].loc[ predict["ds"] >= selected_business_date].iloc[:-(number_periods_forecast)].copy())
         difference = (df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy()
                     - predict["yhat"].loc[ predict["ds"] >= selected_business_date].iloc[:-(number_periods_forecast)].copy())
-        st.write(difference)
         average_difference = difference.mean()
 
         difference = DataFrame(difference.to_list() + [average_difference]*number_periods_forecast, columns=["difference"])
 
-        corrected_predict = DataFrame(predict["yhat"].loc[ df_ticker["ds"] >= selected_business_date].to_list(), columns =["yhat"])
+        corrected_predict = DataFrame(predict["yhat"].loc[predict["ds"] >= selected_business_date].to_list(), columns =["yhat"])
         corrected_predict = corrected_predict["yhat"].copy() + difference["difference"].copy()
 
         predict = predict.iloc[-(number_periods_forecast+15):]

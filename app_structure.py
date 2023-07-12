@@ -107,8 +107,8 @@ class Body:
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
         
-        st.write( pd.to_datetime(df_ticker["Datetime"], format ="%m/%Y") )
-        st.write(selected_business_date)
+        st.write( pd.to_datetime(df_ticker["Datetime"]) )
+        st.write(pd.to_datetime(selected_business_date))
         teste = df_ticker.loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date]
         st.write(teste)
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()

@@ -81,13 +81,10 @@ class Body:
                                             5, 60)
         st.write("O modelo está sendo treinado e isso pode demorar um pouco, por favor aguarde...")
 
-        if selected_real_comp == "Predição":
-            model, predict = prediction.Training(df_ticker=df_ticker,
+        model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
-        else:
-            model, predict = prediction.Training(df_ticker=df_ticker,
-                                                 number_periods_forecast=number_periods_forecast).prophet_comparison()
 
+        predict = predict.iloc[-(number_periods_forecast+10):]
         st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 
         st.subheader("Gráfico com os valores de predição:")

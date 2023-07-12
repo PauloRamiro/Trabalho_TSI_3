@@ -97,8 +97,9 @@ class Body:
 
     @staticmethod
     def show_data_prediction(selected_real_comp, df_ticker):
-        selected_business_date = sidebar_data_list[3][0]
+        selected_business_date = pd.to_datetime(sidebar_data_list[3][0])
         st.subheader(selected_real_comp)
+
         number_periods_forecast = st.slider("Quantidade de periodos para previsão: ",
                                             5, 60)
         st.write("O modelo está sendo treinado e isso pode demorar um pouco, por favor aguarde...")
@@ -107,8 +108,6 @@ class Body:
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
         
-        st.write( pd.to_datetime(df_ticker["Datetime"]) )
-        st.write(pd.to_datetime(selected_business_date))
         teste = df_ticker.loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date]
         st.write(teste)
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()

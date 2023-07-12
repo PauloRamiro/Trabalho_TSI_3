@@ -85,7 +85,9 @@ class Body:
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
 
         predict = predict.iloc[-(number_periods_forecast+10):]
+
         st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
+        st. write(model)
 
         st.subheader("Gráfico com os valores de predição:")
         model_predict_graphic = plot_plotly(model, predict)

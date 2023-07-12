@@ -58,13 +58,21 @@ class Body:
 
         df_ticker = data_pre_processing.DataTicker.collecting_data_in_yfinance(ticker_name_select, selected_period)
 
-        Body.show_data_graph(ticker_name_select, df_ticker)
+        Body.show_data_graph(selected_period, ticker_name_select, df_ticker)
         Body.show_data_prediction(selected_real_comp, df_ticker)
 
     @staticmethod
-    def show_data_graph(ticker_name_select, df_ticker):
+    def show_data_graph(selected_period, ticker_name_select, df_ticker):
         st.subheader("Tabelas de valores  -  " + ticker_name_select[:-3])
         st.write(df_ticker)
+
+        st.download_button(
+            "Baixar tabela como CSV",
+            df_ticker.to_csv(index=False).encode('utf-8'),
+            f"{ticker_name_select[:-3]} - {selected_period}.csv",
+            "text/csv",
+            key='download-csv'
+            )
 
         st.subheader("Gráfico de preços de fechamentos ajustados")
         fig = go.Figure()

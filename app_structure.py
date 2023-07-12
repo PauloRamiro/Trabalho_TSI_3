@@ -90,8 +90,8 @@ class Body:
 
         st.subheader("Gráfico com os valores de predição:")
         model_predict_graphic = plot_plotly(model, predict)
-        st.write( model_predict_graphic)
-        st.plotly_chart(model_predict_graphic.iloc[-(number_periods_forecast+10):])
+        st.write(model_predict_graphic.iloc[-(number_periods_forecast+10):])
+        #st.plotly_chart()
 
         #st.subheader("Gráficos com dados técnicos da predição realizada:")
         #components_model_predict_graphic = plot_components_plotly(model, predict)

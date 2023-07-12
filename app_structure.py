@@ -106,10 +106,7 @@ class Body:
         model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
-        
-        st.write( pd.to_datetime(df_ticker["Datetime"].iloc[-1]) )
-        st.write(selected_business_date)
-        teste = df_ticker.loc[df_ticker["Datetime"]>= selected_business_date]
+        teste = df_ticker.loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date]
         st.write(teste)
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()
         average_difference = difference.iloc[-15:].mean()

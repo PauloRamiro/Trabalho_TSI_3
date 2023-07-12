@@ -88,10 +88,16 @@ class Body:
 
         st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 
+        fig2 = go.Figure()
+        fig2.add_trace(go.Scatter(x=df_ticker["ds"],
+                                 y=df_ticker["yhat"],
+                                 name="Valores preditos",
+                                 line_color="blue"))
+        st.plotly_chart(fig2)
+
         st.subheader("Gráfico com os valores de predição:")
         model_predict_graphic = plot_plotly(model, predict)
-        st.write(model_predict_graphic.iloc[-(number_periods_forecast+10):])
-        #st.plotly_chart()
+        st.plotly_chart(model_predict_graphic)
 
         #st.subheader("Gráficos com dados técnicos da predição realizada:")
         #components_model_predict_graphic = plot_components_plotly(model, predict)

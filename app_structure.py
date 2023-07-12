@@ -94,14 +94,13 @@ class Body:
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
         difference = df_ticker["Adj Close"].copy() - predict["yhat"].iloc[:-(number_periods_forecast)].copy()
-        st.write(difference)
         average_difference = difference.iloc[-15:].mean()
         difference = DataFrame(difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast, columns=["difference"])
         st.write(difference)
 
         corrected_predict = DataFrame(predict["yhat"].iloc[-(number_periods_forecast+15):].to_list, columns =["yhat"])
-        corrected_predict = corrected_predict + difference["difference"].copy()
-        
+        corrected_predict = corrected_predict.copy() + difference["difference"].copy()
+    
         st.write(corrected_predict)
         predict = predict.iloc[-(number_periods_forecast+15):]
 

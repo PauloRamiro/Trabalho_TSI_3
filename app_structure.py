@@ -131,7 +131,7 @@ class Body:
         st.plotly_chart(fig2)
 
         ##############################################################################
-        st.subheader("Simulador:")
+        st.subheader("Informações de rendimento: ")
 
         tabela_valores = df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy()
 
@@ -151,6 +151,9 @@ class Body:
 
         st.button("O lucro previsto é de: ")
         st.write("R$ "+ str(lucro_futuro))
+
+        ###############################################################################
+        st.subheader("Melhor Decisão: ")
 
         if lucro_futuro <= 0:
             st.button("VENDA")

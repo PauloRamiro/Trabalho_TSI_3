@@ -4,6 +4,9 @@ import streamlit as st
 import data_pre_processing
 import prediction
 
+
+st.set_page_config(page_tittle = "Prophet bot")
+
 sidebar_data_list = []
 
 
@@ -85,12 +88,12 @@ class Body:
             model, predict = prediction.Training(df_ticker=df_ticker,
                                                  number_periods_forecast=number_periods_forecast).prophet_comparison()
 
-        st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
+        #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 
         st.subheader("Gráfico com os valores de predição:")
         model_predict_graphic = plot_plotly(model, predict)
         st.plotly_chart(model_predict_graphic)
 
-        st.subheader("Gráficos com dados técnicos da predição realizada:")
-        components_model_predict_graphic = plot_components_plotly(model, predict)
-        st.plotly_chart(components_model_predict_graphic)
+        #st.subheader("Gráficos com dados técnicos da predição realizada:")
+        #components_model_predict_graphic = plot_components_plotly(model, predict)
+        #st.plotly_chart(components_model_predict_graphic)

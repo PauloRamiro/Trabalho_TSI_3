@@ -24,6 +24,7 @@ class Sidebar:
         ticker_name_select = Sidebar.select_ticker()
         selected_period = Sidebar.select_period()
         selected_real_comp = "Predição"
+        selected_business  = Sidebar.select_business()
 
         sidebar_data_list = [ticker_name_select, selected_period, selected_real_comp]
 
@@ -47,6 +48,16 @@ class Sidebar:
                          + " veja os periodos abaixo:")
         selected_period = st.sidebar.selectbox("Escolha um periodo:", periods)
         return selected_period
+    
+    def select_business():
+        st.sidebar.header("Área de Simulações")
+
+        st.sidebar.write("Nessa seção você irá selecionar o dia em que você comprou as ações da empresa escolhida "
+                         + "e a quantidade de ações compradas.")
+        
+        date = st.date_input("Dia de compra das ações:")
+        amount_tickers = st.number_input("Quantidade de ações:")
+        return date, amount_tickers
 
 
 class Body:
@@ -99,7 +110,7 @@ class Body:
 
         corrected_predict = DataFrame(predict["yhat"].iloc[-(number_periods_forecast+15):].to_list(), columns =["yhat"])
         corrected_predict = corrected_predict["yhat"].copy() + difference["difference"].copy()
-        
+
         predict = predict.iloc[-(number_periods_forecast+15):]
 
         #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])

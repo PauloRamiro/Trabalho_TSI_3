@@ -39,7 +39,7 @@ class Sidebar:
 
     @staticmethod
     def select_period():
-        periods = ["1 hora", "1 dia", "5 dias"]
+        periods = ["1 dia"]
 
         st.sidebar.header("Área de Periodos")
         st.sidebar.write("Nessa seção você irá selecionar o periodo a ser analisado na predição,"

@@ -116,7 +116,7 @@ class Body:
         corrected_predict = DataFrame(predict["yhat"].loc[predict["ds"] >= selected_business_date].to_list(), columns =["yhat"])
         corrected_predict = corrected_predict["yhat"].copy() + difference["difference"].copy()
 
-        predict = predict.iloc[-(number_periods_forecast+15):]
+        predict = predict.loc[predict["ds"] >= selected_business_date]
 
         #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 

@@ -8,5 +8,5 @@ yfinance
 plotly
 ephem
 pystan
-sklearn
+scikit-learn
 prophet

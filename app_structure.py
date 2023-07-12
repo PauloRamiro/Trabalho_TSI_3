@@ -5,14 +5,13 @@ import data_pre_processing
 import prediction
 
 
-st.set_page_config(page_tittle = "Prophet bot")
-
 sidebar_data_list = []
 
 
 class Header:
     @staticmethod
     def print_it():
+        st.set_page_config(page_tittle = "Prophet bot")
         st.title("Analise das ações")
 
 

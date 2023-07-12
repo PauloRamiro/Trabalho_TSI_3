@@ -133,21 +133,24 @@ class Body:
         ##############################################################################
         st.subheader("Simulador:")
 
-        tabela_valores = df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy() 
+        tabela_valores = df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy()
 
         valor_inicial_gasto = round(tabela_valores.iloc[0]*selected_business_amount, 2)
+        st.button("O valor gasto inicialmente foi de: ")
 
-        st.write("O valor gasto inicialmente foi de: R$ " + str(valor_inicial_gasto))
+        st.write("R$ " + str(valor_inicial_gasto))
 
         valor_atual = tabela_valores.iloc[-1]*selected_business_amount
         valor_predito = corrected_predict.iloc[-1]*selected_business_amount
 
         lucro_atual = round(valor_atual -valor_inicial_gasto, 2)
-        st.write("O lucro atual é de: R$ " +str(lucro_atual))
+        st.button("O lucro atual é de: ")
+        st.write("R$ " +str(lucro_atual))
 
         lucro_futuro = round(valor_predito -  valor_inicial_gasto, 2)
 
-        st.write("O lucro previsto é de: R$ "+ str(lucro_futuro))
+        st.button("O lucro previsto é de: ")
+        st.write("R$ "+ str(lucro_futuro))
 
         if lucro_futuro <= 0:
             st.button("VENDA")

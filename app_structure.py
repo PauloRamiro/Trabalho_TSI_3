@@ -107,7 +107,7 @@ class Body:
                                                  number_periods_forecast=number_periods_forecast).prophet_prediction()
         
         
-        st.write(pd.to_datetime(df_ticker["Datetime"].iloc[-1], format='%Y-%m-%d'))
+        st.write( pd.to_datetime(df_ticker["Datetime"].iloc[-1]) )
         st.write(selected_business_date)
         teste = df_ticker.loc[df_ticker["Datetime"]>= selected_business_date]
         st.write(teste)

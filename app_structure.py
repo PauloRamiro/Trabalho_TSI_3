@@ -135,8 +135,10 @@ class Body:
 
         tabela_valores = df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy() 
 
-        valor_inicial_gasto = tabela_valores.iloc[0]*selected_business_amount
+        valor_inicial_gasto = round(tabela_valores.iloc[0]*selected_business_amount, 2)
+
         st.write("O valor gasto inicialmente foi de: R$ " + str(valor_inicial_gasto))
+
         valor_atual = tabela_valores.iloc[-1]*selected_business_amount
         valor_predito = corrected_predict.iloc[-1]*selected_business_amount
 
@@ -146,3 +148,9 @@ class Body:
         lucro_futuro = round(valor_predito -  valor_inicial_gasto, 2)
 
         st.write("O lucro previsto é de: R$ "+ str(lucro_futuro))
+
+        if lucro_futuro <= 0:
+            st.button("VENDA")
+        
+        if lucro_futuro >= 0:
+            st.button("Manutenção")

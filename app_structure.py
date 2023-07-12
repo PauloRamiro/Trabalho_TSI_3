@@ -99,7 +99,7 @@ class Body:
         st.write(difference)
 
         corrected_predict = DataFrame(predict["yhat"].iloc[-(number_periods_forecast+15):].to_list, columns =["yhat"])
-        corrected_predict = corrected_predict.copy() + difference["difference"].copy()
+        corrected_predict = corrected_predict["yhat"].copy() + difference["difference"].copy()
     
         st.write(corrected_predict)
         predict = predict.iloc[-(number_periods_forecast+15):]

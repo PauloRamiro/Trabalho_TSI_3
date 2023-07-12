@@ -99,7 +99,7 @@ class Body:
         st.write(difference)
 
         corrected_predict = predict["yhat"].iloc[-(number_periods_forecast+15):].copy()+ difference["difference"]
-        predict = predict["yhat"].iloc[-(number_periods_forecast+15):]
+        predict = predict.iloc[-(number_periods_forecast+15):]
 
         #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 

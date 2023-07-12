@@ -98,7 +98,8 @@ class Body:
         difference = DataFrame(difference.iloc[-15:].to_list() + [average_difference]*number_periods_forecast, columns=["difference"])
         st.write(difference)
 
-        predict = predict.iloc[-(number_periods_forecast+15):]
+        corrected_predict = predict["yhat"].iloc[-(number_periods_forecast+15):].copy()+ difference["difference"]
+        predict = predict["yhat"].iloc[-(number_periods_forecast+15):]
 
         #st.write(predict[['ds', 'yhat', 'yhat_lower', 'yhat_upper']])
 
@@ -106,7 +107,7 @@ class Body:
         
         fig2 = go.Figure()
         fig2.add_trace(go.Scatter(x=predict["ds"],
-                                 y=predict["yhat"],
+                                 y=corrected_predict,
                                  name="Valores preditos",
                                  line_color="blue"))
         st.plotly_chart(fig2)

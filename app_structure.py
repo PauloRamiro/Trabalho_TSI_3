@@ -98,6 +98,7 @@ class Body:
     @staticmethod
     def show_data_prediction(selected_real_comp, df_ticker):
         selected_business_date = pd.to_datetime(sidebar_data_list[3][0])
+        selected_business_amount = int(sidebar_data_list[3][1])
         st.subheader(selected_real_comp)
 
         number_periods_forecast = st.slider("Quantidade de periodos para previsão: ",
@@ -129,10 +130,18 @@ class Body:
                                  line_color="blue"))
         st.plotly_chart(fig2)
 
+        ##############################################################################
+        st.subheader("Simulador:")
 
-        #model_predict_graphic = plot_plotly(model, predict)
-        #st.plotly_chart(model_predict_graphic)
+        tabela_valores = df_ticker["Adj Close"].loc[ pd.to_datetime(df_ticker["Datetime"]) >= selected_business_date].copy() 
 
-        #st.subheader("Gráficos com dados técnicos da predição realizada:")
-        #components_model_predict_graphic = plot_components_plotly(model, predict)
-        #st.plotly_chart(components_model_predict_graphic)
+        valor_inicial_gasto = tabela_valores.iloc[0]*selected_business_amount
+        valor_atual = tabela_valores.iloc[-1]*selected_business_amount
+        valor_predito = corrected_predict.iloc[-1]*selected_business_amount
+
+        lucro_atual = valor_atual -valor_inicial_gasto
+        st.write(lucro_atual)
+
+        lucro_futuro =valor_predito -  valor_inicial_gasto
+
+        st.write(lucro_futuro)

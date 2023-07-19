@@ -162,5 +162,11 @@ class Body:
         if lucro_futuro > lucro_atual :
             st.button("MANUTENÇÃO OU COMPRA")
         
+        elif lucro_futuro >= lucro_atual and lucro_atual<0:
+            st.button("COMPRA")
+        
+        elif lucro_atual>=0 and lucro_futuro <= lucro_atual:
+            st.button("VENDA")
+
         elif lucro_futuro <= lucro_atual:
             st.button("MANUTENÇÃO OU VENDA")

@@ -4,6 +4,7 @@ from pandas import DataFrame
 import pandas as pd
 import streamlit as st
 import data_pre_processing
+import datetime
 import prediction
 
 
@@ -56,7 +57,7 @@ class Sidebar:
         st.sidebar.write("Nessa seção você irá selecionar o dia em que você comprou as ações da empresa escolhida "
                          + "e a quantidade de ações compradas.")
         
-        date = st.sidebar.date_input("Dia de compra das ações:")
+        date = st.sidebar.date_input("Dia de compra das ações:", value = (datetime.now()-datetime.timedelta(1)))
         amount_tickers = st.sidebar.number_input("Quantidade de ações:")
         return date, amount_tickers
 
@@ -155,8 +156,8 @@ class Body:
         ###############################################################################
         st.subheader("Melhor Decisão: ")
 
-        if lucro_futuro <= 0:
-            st.button("VENDA")
+        if lucro_futuro > lucro_atual :
+            st.button("MANUTENÇÃO OU COMPRA")
         
-        if lucro_futuro >= 0:
-            st.button("Manutenção")
+        elif lucro_futuro <= lucro_atual:
+            st.button("MANUTENÇÃO OU VENDA")

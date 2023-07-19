@@ -57,7 +57,7 @@ class Sidebar:
         st.sidebar.write("Nessa seção você irá selecionar o dia em que você comprou as ações da empresa escolhida "
                          + "e a quantidade de ações compradas.")
         
-        date = st.sidebar.date_input("Dia de compra das ações:", value = (datetime.datetime.now()-datetime.datetime.timedelta(1)))
+        date = st.sidebar.date_input("Dia de compra das ações:", value = (datetime.datetime.now()-datetime.timedelta(1)))
         amount_tickers = st.sidebar.number_input("Quantidade de ações:")
         return date, amount_tickers
 
